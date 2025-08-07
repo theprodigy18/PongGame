@@ -18,4 +18,5 @@ typedef struct _Vertex
 } Vertex;
 
 bool DROP_CreateMeshBuffer(const Vertex* pVertices, const GLint* pIndices, size_t vertexCount, size_t indexCount, MeshBuffer* pMeshBuffer);
+bool DROP_CreateMeshBufferWithSharedVBO(const GLuint vbo, const GLint* pIndices, size_t indexCount, MeshBuffer* pMeshBuffer);
 void DROP_DestroyMeshBuffer(MeshBuffer* pMeshBuffer, bool onlyVAO);

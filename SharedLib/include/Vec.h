@@ -33,3 +33,8 @@ inline Vec4 Vec4_Create(f32 x, f32 y, f32 z, f32 w)
 {
     return (Vec4){.data = _mm_set_ps(w, z, y, x)};
 }
+
+inline Vec4 Vec4Multiply(const Vec4* pVecA, const Vec4* pVecB)
+{
+	return (Vec4){.data = _mm_mul_ps(pVecA->data, pVecB->data)};
+}

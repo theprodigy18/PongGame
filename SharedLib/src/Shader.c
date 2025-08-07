@@ -65,6 +65,7 @@ GLuint DROP_LoadShaders(const char* vsPath, const char* fsPath)
     if (!ReadFileFromPath(vsPath, &vsSource) || !vsSource)
     {
         LOG_ERROR("Failed to read vertex shader file: %s", vsPath);
+		FREE(vsSource);
         return 0;
     }
 
@@ -72,6 +73,8 @@ GLuint DROP_LoadShaders(const char* vsPath, const char* fsPath)
     if (!ReadFileFromPath(fsPath, &fsSource) || !fsSource)
     {
         LOG_ERROR("Failed to read fragment shader file: %s", fsPath);
+		FREE(vsSource);
+		FREE(fsSource);
         return 0;
     }
 
@@ -80,6 +83,9 @@ GLuint DROP_LoadShaders(const char* vsPath, const char* fsPath)
 
     glShaderSource(vs, 1, &vsSource, NULL);
     glShaderSource(fs, 1, &fsSource, NULL);
+
+	FREE(vsSource);
+	FREE(fsSource);
 
     glCompileShader(vs);
     glCompileShader(fs);
